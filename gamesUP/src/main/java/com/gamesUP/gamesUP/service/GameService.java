@@ -11,9 +11,11 @@ import com.gamesUP.gamesUP.repository.GameRepository;
 public class GameService {
 
     private final GameRepository gameRepository;
+    private final RecommandationClient recommandationClient;
 
-    public GameService(GameRepository gameRepository) {
+    public GameService(GameRepository gameRepository, RecommandationClient recommandationClient) {
         this.gameRepository = gameRepository;
+        this.recommandationClient = recommandationClient;
     }
 
     public List<Game> getAllJeux() {
@@ -25,7 +27,8 @@ public class GameService {
     }
 
     public Game findById(int id) {
-        return gameRepository.findById(id).orElseThrow();
+        return gameRepository.findById(id)
+                .orElseThrow(() -> new JeuNonTrouveException(id));
     }
 
     public void deleteById(int id) {
@@ -36,13 +39,29 @@ public class GameService {
         return gameRepository.findByNomContainingIgnoreCase(nom);
     }
 
+    public List<Game> recommander(int idUtilisateur) {
+        List<Game> jeux = new java.util.ArrayList<>();
+        for (Integer idJeu : recommandationClient.recommander(idUtilisateur)) {
+            try {
+                jeux.add(findById(idJeu));
+            } catch (JeuNonTrouveException exception) {
+                // Ignore les jeux qui n'existent plus.
+            }
+        }
+        return jeux;
+    }
+
     public Game modifierJeu(int id, Game game) {
-        gameRepository.findById(id).orElseThrow();
+        gameRepository.findById(id)
+                .orElseThrow(() -> new JeuNonTrouveException(id));
         game.id = id;
         return gameRepository.save(game);
     }
 
     public void supprimerJeu(int id) {
+        if (!gameRepository.existsById(id)) {
+            throw new JeuNonTrouveException(id);
+        }
         gameRepository.deleteById(id);
     }
 }

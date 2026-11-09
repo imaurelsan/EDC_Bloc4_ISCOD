@@ -29,5 +29,12 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+### Projet / système ###
+*.mv.db
+*.trace.db
+*.log
+.DS_Store
+Thumbs.db
+
 ### VS Code ###
 .vscode/

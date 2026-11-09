@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import com.gamesUP.gamesUP.config.SecurityConfig;
 import com.gamesUP.gamesUP.model.Game;
 import com.gamesUP.gamesUP.service.GameService;
+import com.gamesUP.gamesUP.service.JeuNonTrouveException;
 
 // Ce test ne charge que la couche web (le contrôleur), pas toute l'application.
 // Le GameService est remplacé par un faux (mock), donc la base de données n'est pas utilisée.
@@ -157,5 +158,29 @@ class GameControllerTest {
                 .andExpect(jsonPath("$.nom").value("Catan"));
 
         verify(gameService).ajouterJeu(org.mockito.ArgumentMatchers.any(Game.class));
+    }
+
+    @Test
+    @WithMockUser(roles = "ADMIN")
+    void modifierJeuAvecIdInconnuRenvoie404() throws Exception {
+        when(gameService.modifierJeu(org.mockito.ArgumentMatchers.eq(1),
+                org.mockito.ArgumentMatchers.any(Game.class)))
+                .thenThrow(new JeuNonTrouveException(1));
+
+        mockMvc.perform(put("/jeux/1")
+                .contentType("application/json")
+                .content("{\"nom\":\"Catan\"}"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser(roles = "CLIENT")
+    void recommanderAvecClientRenvoie200() throws Exception {
+        when(gameService.recommander(1)).thenReturn(List.of(new Game()));
+
+        mockMvc.perform(get("/jeux/recommandations/1"))
+                .andExpect(status().isOk());
+
+        verify(gameService).recommander(1);
     }
 }

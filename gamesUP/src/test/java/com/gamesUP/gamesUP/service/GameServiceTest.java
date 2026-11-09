@@ -1,6 +1,7 @@
 package com.gamesUP.gamesUP.service;
 
 import static org.junit.jupiter.api.Assertions.assertSame;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -21,6 +22,9 @@ class GameServiceTest {
 
     @Mock
     private GameRepository gameRepository;
+
+    @Mock
+    private RecommandationClient recommandationClient;
 
     @InjectMocks
     private GameService gameService;
@@ -90,8 +94,48 @@ class GameServiceTest {
 
     @Test
     void supprimerJeuAppelleDeleteById() {
+        when(gameRepository.existsById(1)).thenReturn(true);
+
         gameService.supprimerJeu(1);
 
         verify(gameRepository).deleteById(1);
+    }
+
+    @Test
+    void findByIdLeveUneExceptionSiLeJeuEstAbsent() {
+        when(gameRepository.findById(1)).thenReturn(Optional.empty());
+
+        assertThrows(JeuNonTrouveException.class, () -> gameService.findById(1));
+    }
+
+    @Test
+    void supprimerJeuLeveUneExceptionSiIdInconnu() {
+        when(gameRepository.existsById(1)).thenReturn(false);
+
+        assertThrows(JeuNonTrouveException.class, () -> gameService.supprimerJeu(1));
+    }
+
+    @Test
+    void recommanderRenvoieLesJeuxRecommandes() {
+        Game game = new Game();
+        when(recommandationClient.recommander(1)).thenReturn(List.of(1));
+        when(gameRepository.findById(1)).thenReturn(Optional.of(game));
+
+        List<Game> resultat = gameService.recommander(1);
+
+        assertSame(game, resultat.get(0));
+        verify(recommandationClient).recommander(1);
+        verify(gameRepository).findById(1);
+    }
+
+    @Test
+    void recommanderIgnoreUnJeuInexistant() {
+        when(recommandationClient.recommander(1)).thenReturn(List.of(99));
+        when(gameRepository.findById(99)).thenReturn(Optional.empty());
+
+        List<Game> resultat = gameService.recommander(1);
+
+        org.junit.jupiter.api.Assertions.assertTrue(resultat.isEmpty());
+        verify(gameRepository).findById(99);
     }
 }

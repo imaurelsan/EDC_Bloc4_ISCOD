@@ -28,6 +28,11 @@ public class GameController {
         return gameService.rechercherParNom(nom);
     }
 
+    @GetMapping("/recommandations/{idUtilisateur}")
+    public List<Game> recommander(@PathVariable int idUtilisateur) {
+        return gameService.recommander(idUtilisateur);
+    }
+
     @PostMapping
     public ResponseEntity<Game> ajouterJeu(@RequestBody Game game) {
         return ResponseEntity.status(201).body(gameService.ajouterJeu(game));
