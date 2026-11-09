@@ -8,3 +8,8 @@ class UserPurchase(BaseModel):
 class UserData(BaseModel):
     user_id: int
     purchases: List[UserPurchase]
+
+class Interaction(BaseModel):
+    user_id: int
+    game_id: int
+    interaction: float
