@@ -38,6 +38,12 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.PUT, "/jeux/**").hasRole("ADMIN")
                 // La suppression d'un jeu est réservée à l'administrateur.
                 .requestMatchers(HttpMethod.DELETE, "/jeux/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/utilisateurs/me").hasAnyRole("CLIENT", "ADMIN")
+                .requestMatchers("/utilisateurs/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.GET, "/commandes/**").authenticated()
+                .requestMatchers(HttpMethod.POST, "/commandes/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.PUT, "/commandes/**").hasRole("ADMIN")
+                .requestMatchers(HttpMethod.DELETE, "/commandes/**").hasRole("ADMIN")
                 // Toutes les autres routes demandent une authentification.
                 .anyRequest().authenticated()
         )
