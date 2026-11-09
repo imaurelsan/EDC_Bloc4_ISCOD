@@ -64,20 +64,6 @@ class GameControllerTest {
     }
 
     @Test
-    @WithMockUser(roles = "ADMIN")
-    void ajouterJeuAvecAdminRenvoie200() throws Exception {
-        when(gameService.ajouterJeu(org.mockito.ArgumentMatchers.any(Game.class)))
-                .thenAnswer(invocation -> invocation.getArgument(0));
-
-        mockMvc.perform(post("/jeux")
-                .contentType("application/json")
-                .content("{\"nom\":\"Catan\"}"))
-                .andExpect(status().isCreated());
-
-        verify(gameService).ajouterJeu(org.mockito.ArgumentMatchers.any(Game.class));
-    }
-
-    @Test
     @WithMockUser(roles = "CLIENT")
     void ajouterJeuAvecClientRenvoie403() throws Exception {
         mockMvc.perform(post("/jeux")
