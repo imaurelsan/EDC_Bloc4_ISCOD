@@ -63,6 +63,15 @@ class AuthorControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = "CLIENT")
+    void clientNePeutPasEnregistrerUnAuteur() throws Exception {
+        mockMvc.perform(post("/auteurs")
+                .contentType("application/json")
+                .content("{\"name\":\"Tolkien\"}"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
     @WithMockUser(roles = "ADMIN")
     void modifierRenvoie200() throws Exception {
         when(authorService.versEntite(any())).thenReturn(new Author());

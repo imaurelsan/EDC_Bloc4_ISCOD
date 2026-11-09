@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.access.prepost.PreAuthorize;
 
 import com.gamesUP.gamesUP.dto.AuthorDTO;
 import com.gamesUP.gamesUP.service.AuthorService;
@@ -36,17 +37,20 @@ public class AuthorController {
     }
 
     @PostMapping
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<AuthorDTO> enregistrer(@RequestBody AuthorDTO authorDTO) {
         return ResponseEntity.status(201)
                 .body(authorService.versDTO(authorService.enregistrer(authorService.versEntite(authorDTO))));
     }
 
     @PutMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public AuthorDTO modifier(@PathVariable Long id, @RequestBody AuthorDTO authorDTO) {
         return authorService.versDTO(authorService.modifier(id, authorService.versEntite(authorDTO)));
     }
 
     @DeleteMapping("/{id}")
+    @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> supprimer(@PathVariable Long id) {
         authorService.supprimer(id);
         return ResponseEntity.noContent().build();

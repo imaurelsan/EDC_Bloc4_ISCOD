@@ -1,11 +1,11 @@
 from pathlib import Path
 
 import pandas as pd
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 
 from data_loader import load_training_data
 from models import Interaction, UserData
-from recommendation import entrainer_modele, generate_recommendations, recommander
+from recommendation import entrainer_modele, recommander
 
 app = FastAPI()
 donnees = load_training_data(Path(__file__).parent / "data" / "interactions.csv")
@@ -19,11 +19,7 @@ async def root():
 # Endpoint pour envoyer les données d'utilisateur et récupérer des recommandations
 @app.post("/recommendations/")
 async def get_recommendations(data: UserData):
-    try:
-        recommendations = generate_recommendations(data)
-        return {"recommendations": recommendations}
-    except Exception as e:
-        raise HTTPException(status_code=500, detail=str(e))
+    return {"recommendations": recommander(data.user_id, modele)}
 
 @app.get("/recommandations/{idUtilisateur}")
 async def recommandations(idUtilisateur: int):

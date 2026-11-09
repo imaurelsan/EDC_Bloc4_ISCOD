@@ -34,6 +34,11 @@ public class GameController {
         return gameService.recommander(idUtilisateur).stream().map(gameService::versDTO).toList();
     }
 
+    @GetMapping("/{id}")
+    public GameDTO findById(@PathVariable int id) {
+        return gameService.versDTO(gameService.findById(id));
+    }
+
     @PostMapping
     public ResponseEntity<GameDTO> ajouterJeu(@RequestBody GameDTO gameDTO) {
         Game game = gameService.ajouterJeu(gameService.versEntite(gameDTO));

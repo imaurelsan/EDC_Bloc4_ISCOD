@@ -65,6 +65,28 @@ class GameControllerTest {
 
     @Test
     @WithMockUser(roles = "CLIENT")
+    void trouverJeuAvecClientRenvoie200() throws Exception {
+        Game game = new Game();
+        game.id = 1;
+        game.nom = "Catan";
+        when(gameService.findById(1)).thenReturn(game);
+
+        mockMvc.perform(get("/jeux/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.nom").value("Catan"));
+    }
+
+    @Test
+    @WithMockUser(roles = "CLIENT")
+    void trouverJeuInconnuRenvoie404() throws Exception {
+        when(gameService.findById(1)).thenThrow(new JeuNonTrouveException(1));
+
+        mockMvc.perform(get("/jeux/1"))
+                .andExpect(status().isNotFound());
+    }
+
+    @Test
+    @WithMockUser(roles = "CLIENT")
     void ajouterJeuAvecClientRenvoie403() throws Exception {
         mockMvc.perform(post("/jeux")
                 .contentType("application/json")

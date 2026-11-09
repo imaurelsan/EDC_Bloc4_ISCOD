@@ -64,6 +64,15 @@ class PublisherControllerTest {
     }
 
     @Test
+    @WithMockUser(roles = "CLIENT")
+    void clientNePeutPasEnregistrerUnEditeur() throws Exception {
+        mockMvc.perform(post("/editeurs")
+                .contentType("application/json")
+                .content("{\"name\":\"Asmodee\"}"))
+                .andExpect(status().isForbidden());
+    }
+
+    @Test
     @WithMockUser(roles = "ADMIN")
     void modifierRenvoie200() throws Exception {
         when(publisherService.versEntite(any())).thenReturn(new Publisher());
