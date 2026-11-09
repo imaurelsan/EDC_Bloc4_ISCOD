@@ -1,6 +1,7 @@
 package com.gamesUP.gamesUP.service;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
@@ -46,5 +47,15 @@ class RecommandationClientTest {
         List<Integer> resultat = recommandationClient.recommander(1);
 
         assertEquals(List.of(), resultat);
+    }
+
+    @Test
+    void envoyerInteractionFaitLePostAttendu() {
+        recommandationClient.envoyerInteraction(1, 2);
+
+        verify(restTemplate).postForObject(
+                "http://localhost:8000/interactions",
+                java.util.Map.of("user_id", 1, "game_id", 2, "interaction", 1),
+                Void.class);
     }
 }

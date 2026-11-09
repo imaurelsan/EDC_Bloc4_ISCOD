@@ -3,6 +3,7 @@ package com.gamesUP.gamesUP.service;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Collections;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -36,6 +37,18 @@ public class RecommandationClient {
         } catch (RestClientException exception) {
             logger.error("Impossible de joindre l'API de recommandation", exception);
             return Collections.emptyList();
+        }
+    }
+
+    public void envoyerInteraction(int idUtilisateur, int idJeu) {
+        try {
+            Map<String, Integer> interaction = Map.of(
+                    "user_id", idUtilisateur,
+                    "game_id", idJeu,
+                    "interaction", 1);
+            restTemplate.postForObject(url + "/interactions", interaction, Void.class);
+        } catch (RestClientException exception) {
+            logger.error("Impossible d'envoyer l'interaction à l'API de recommandation", exception);
         }
     }
 }
