@@ -8,6 +8,8 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.is;
 
 import java.util.List;
 
@@ -25,6 +27,7 @@ import com.gamesUP.gamesUP.dto.GameDTO;
 import com.gamesUP.gamesUP.model.Game;
 import com.gamesUP.gamesUP.service.GameService;
 import com.gamesUP.gamesUP.service.JeuNonTrouveException;
+import com.gamesUP.gamesUP.service.RecommandationClient;
 
 @WebMvcTest(GameController.class)
 @Import(SecurityConfig.class)
@@ -35,6 +38,9 @@ class GameControllerTest {
 
     @MockBean
     private GameService gameService;
+
+    @MockBean
+    private RecommandationClient recommandationClient;
 
     @BeforeEach
     void preparerLesConversions() {
@@ -195,5 +201,24 @@ class GameControllerTest {
                 .andExpect(status().isOk());
 
         verify(gameService).recommander(1);
+    }
+
+    @Test
+    @WithMockUser(roles = "CLIENT")
+    void recommanderAvecClientRenvoieLesJeuxDuKnn() throws Exception {
+        Game game = new Game();
+        game.id = 2;
+        game.nom = "Azul";
+        GameDTO gameDTO = new GameDTO();
+        gameDTO.setId(2);
+        gameDTO.setNom("Azul");
+        when(gameService.recommander(1)).thenReturn(List.of(game));
+        when(gameService.versDTO(game)).thenReturn(gameDTO);
+
+        mockMvc.perform(get("/jeux/recommandations/1"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].id", is(2)))
+                .andExpect(jsonPath("$[0].nom", is("Azul")));
     }
 }

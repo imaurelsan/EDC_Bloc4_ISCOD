@@ -141,6 +141,20 @@ class GameServiceTest {
     }
 
     @Test
+    void recommanderAppelleLeClientEtRenvoieLesJeux() {
+        Game premierJeu = new Game();
+        Game deuxiemeJeu = new Game();
+        when(recommandationClient.recommander(1)).thenReturn(List.of(2, 3));
+        when(gameRepository.findById(2)).thenReturn(Optional.of(premierJeu));
+        when(gameRepository.findById(3)).thenReturn(Optional.of(deuxiemeJeu));
+
+        List<Game> resultat = gameService.recommander(1);
+
+        org.junit.jupiter.api.Assertions.assertEquals(List.of(premierJeu, deuxiemeJeu), resultat);
+        verify(recommandationClient).recommander(1);
+    }
+
+    @Test
     void versDTORenvoieLesInformationsDuJeu() {
         Game game = new Game();
         game.id = 1;
