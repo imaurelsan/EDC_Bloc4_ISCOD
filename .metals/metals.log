@@ -8576,3 +8576,5 @@ C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP
 2026.11.09 15:54:43 INFO  Note: Annotation processing is enabled because one or more processors were found
 2026.11.09 15:54:43 WARN  javac exited with exit code 1
 2026.11.09 15:54:43 INFO  time: compiled gamesUP in 2.74s
+nov. 09, 2026 4:04:28 PM org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFOS: Unsupported notification method: $/setTrace
