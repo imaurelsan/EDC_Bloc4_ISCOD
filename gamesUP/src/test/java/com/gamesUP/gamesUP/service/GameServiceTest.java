@@ -145,11 +145,15 @@ class GameServiceTest {
         Game game = new Game();
         game.id = 1;
         game.nom = "Catan";
+        game.prix = 39.99;
+        game.description = "Jeu de stratégie";
 
         GameDTO resultat = gameService.versDTO(game);
 
         assertSame("Catan", resultat.getNom());
         org.junit.jupiter.api.Assertions.assertEquals(1, resultat.getId());
+        org.junit.jupiter.api.Assertions.assertEquals(39.99, resultat.getPrix());
+        assertSame("Jeu de stratégie", resultat.getDescription());
     }
 
     @Test

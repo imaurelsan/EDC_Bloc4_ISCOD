@@ -24,7 +24,7 @@ public class GameService {
     }
 
     public GameDTO versDTO(Game game) {
-        return new GameDTO(game.id, game.nom, 0, null, game.auteur, game.genre,
+        return new GameDTO(game.id, game.nom, game.prix, game.description, game.auteur, game.genre,
                 game.category, game.publisher, game.numEdition);
     }
 
@@ -32,6 +32,8 @@ public class GameService {
         Game game = new Game();
         game.id = gameDTO.getId();
         game.nom = gameDTO.getNom();
+        game.prix = gameDTO.getPrix();
+        game.description = gameDTO.getDescription();
         game.auteur = gameDTO.getAuteur();
         game.genre = gameDTO.getGenre();
         game.category = gameDTO.getCategory();
