@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.List;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -21,6 +22,7 @@ import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.gamesUP.gamesUP.config.SecurityConfig;
+import com.gamesUP.gamesUP.dto.GameDTO;
 import com.gamesUP.gamesUP.model.Game;
 import com.gamesUP.gamesUP.service.GameService;
 import com.gamesUP.gamesUP.service.JeuNonTrouveException;
@@ -39,6 +41,24 @@ class GameControllerTest {
     // Faux service : on contrôle ce qu'il renvoie, pour tester seulement le contrôleur
     @MockBean
     private GameService gameService;
+
+    @BeforeEach
+    void preparerLesConversions() {
+        when(gameService.versEntite(org.mockito.ArgumentMatchers.any(GameDTO.class)))
+                .thenAnswer(invocation -> {
+                    GameDTO dto = invocation.getArgument(0);
+                    Game game = new Game();
+                    game.nom = dto.getNom();
+                    return game;
+                });
+        when(gameService.versDTO(org.mockito.ArgumentMatchers.any(Game.class)))
+                .thenAnswer(invocation -> {
+                    Game game = invocation.getArgument(0);
+                    GameDTO dto = new GameDTO();
+                    dto.setNom(game.nom);
+                    return dto;
+                });
+    }
 
     // Test 1 : un client connecté peut lire la liste des jeux (on attend 200 OK)
     @Test

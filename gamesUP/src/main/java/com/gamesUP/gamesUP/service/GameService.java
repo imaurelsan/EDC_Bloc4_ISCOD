@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import com.gamesUP.gamesUP.model.Game;
 import com.gamesUP.gamesUP.repository.GameRepository;
+import com.gamesUP.gamesUP.dto.GameDTO;
 
 @Service
 public class GameService {
@@ -20,6 +21,23 @@ public class GameService {
 
     public List<Game> getAllJeux() {
         return gameRepository.findAll();
+    }
+
+    public GameDTO versDTO(Game game) {
+        return new GameDTO(game.id, game.nom, 0, null, game.auteur, game.genre,
+                game.category, game.publisher, game.numEdition);
+    }
+
+    public Game versEntite(GameDTO gameDTO) {
+        Game game = new Game();
+        game.id = gameDTO.getId();
+        game.nom = gameDTO.getNom();
+        game.auteur = gameDTO.getAuteur();
+        game.genre = gameDTO.getGenre();
+        game.category = gameDTO.getCategory();
+        game.publisher = gameDTO.getPublisher();
+        game.numEdition = gameDTO.getNumEdition();
+        return game;
     }
 
     public Game ajouterJeu(Game game) {

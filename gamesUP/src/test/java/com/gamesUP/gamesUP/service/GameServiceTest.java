@@ -16,6 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.gamesUP.gamesUP.model.Game;
 import com.gamesUP.gamesUP.repository.GameRepository;
+import com.gamesUP.gamesUP.dto.GameDTO;
 
 @ExtendWith(MockitoExtension.class)
 class GameServiceTest {
@@ -137,5 +138,29 @@ class GameServiceTest {
 
         org.junit.jupiter.api.Assertions.assertTrue(resultat.isEmpty());
         verify(gameRepository).findById(99);
+    }
+
+    @Test
+    void versDTORenvoieLesInformationsDuJeu() {
+        Game game = new Game();
+        game.id = 1;
+        game.nom = "Catan";
+
+        GameDTO resultat = gameService.versDTO(game);
+
+        assertSame("Catan", resultat.getNom());
+        org.junit.jupiter.api.Assertions.assertEquals(1, resultat.getId());
+    }
+
+    @Test
+    void versEntiteRenvoieLesInformationsDuDTO() {
+        GameDTO gameDTO = new GameDTO();
+        gameDTO.setId(1);
+        gameDTO.setNom("Catan");
+
+        Game resultat = gameService.versEntite(gameDTO);
+
+        assertSame("Catan", resultat.nom);
+        org.junit.jupiter.api.Assertions.assertEquals(1, resultat.id);
     }
 }
