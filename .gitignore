@@ -1,5 +1,7 @@
 .metals/
 .metals/metals.log
+target/
+.bloop/
 **pycache**/
 *.pkl
 *.joblib
