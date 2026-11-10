@@ -9,7 +9,7 @@ from models import Interaction, UserData
 from recommendation import entrainer_modele, recommander
 
 app = FastAPI()
-chemin_modele = Path(__file__).parent / "data" / "knn_model.pkl"
+chemin_modele = Path(__file__).parent / "knn_model.pkl"
 modele = None
 donnees = None
 if chemin_modele.exists():
