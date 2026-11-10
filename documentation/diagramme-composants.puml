@@ -1,0 +1,27 @@
+@startuml
+title Composants réels de gamesUP
+
+component "API Spring Boot" as spring {
+  component "GameController" as gameController
+  component "AuthorController" as authorController
+  component "PublisherController" as publisherController
+  component "UserController" as userController
+  component "PurchaseController" as purchaseController
+  component "Services" as services
+  component "Repositories JPA" as repositories
+}
+
+component "API FastAPI Python" as python {
+  component "Recommandation KNN" as knn
+}
+
+gameController --> services
+authorController --> services
+publisherController --> services
+userController --> services
+purchaseController --> services
+services --> repositories
+services --> python : RecommandationClient\nHTTP
+python --> knn
+
+@enduml

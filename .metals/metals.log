@@ -11007,3 +11007,193 @@ C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP
 2026.11.09 22:54:32 INFO  Note: Annotation processing is enabled because one or more processors were found
 2026.11.09 22:54:32 WARN  javac exited with exit code 1
 2026.11.09 22:54:32 INFO  time: compiled gamesUP in 2.59s
+nov. 10, 2026 12:06:39 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 238
+nov. 10, 2026 12:06:39 AM org.eclipse.lsp4j.jsonrpc.RemoteEndpoint handleCancellation
+AVERTISSEMENT: Unmatched cancel notification for request id 239
+2026.11.10 00:09:46 INFO  compiling gamesup (38 java sources)
+2026.11.10 00:09:49 WARN  Unexpected javac output: Note: Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:6: error: package org.springframework.security.config.annotation.web.builders does not exist
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+                                                                  ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:7: error: package org.springframework.security.config.annotation.method.configuration does not exist
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+                                                                          ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:8: error: package org.springframework.security.config does not exist
+import org.springframework.security.config.Customizer;
+                                          ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:9: error: package org.springframework.security.core.userdetails does not exist
+import org.springframework.security.core.userdetails.User;
+                                                    ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:10: error: package org.springframework.security.provisioning does not exist
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+                                                ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:11: error: package org.springframework.security.web does not exist
+import org.springframework.security.web.SecurityFilterChain;
+                                       ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:14: error: cannot find symbol
+@EnableMethodSecurity
+ ^
+  symbol: class EnableMethodSecurity
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:18: error: cannot find symbol
+    public InMemoryUserDetailsManager users() {
+           ^
+  symbol:   class InMemoryUserDetailsManager
+  location: class SecurityConfig
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:32: error: cannot find symbol
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                                                   ^
+  symbol:   class HttpSecurity
+  location: class SecurityConfig
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:32: error: cannot find symbol
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+           ^
+  symbol:   class SecurityFilterChain
+  location: class SecurityConfig
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\AuthorController.java:14: error: package org.springframework.security.access.prepost does not exist
+import org.springframework.security.access.prepost.PreAuthorize;
+                                                  ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\PublisherController.java:14: error: package org.springframework.security.access.prepost does not exist
+import org.springframework.security.access.prepost.PreAuthorize;
+                                                  ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\UserController.java:6: error: package org.springframework.security.core does not exist
+import org.springframework.security.core.Authentication;
+                                        ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\UserController.java:35: error: cannot find symbol
+    public User getCurrentUser(Authentication authentication) {
+                               ^
+  symbol:   class Authentication
+  location: class UserController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\AuthorController.java:40: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class AuthorController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\AuthorController.java:47: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class AuthorController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\AuthorController.java:53: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class AuthorController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\PublisherController.java:40: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class PublisherController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\PublisherController.java:47: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class PublisherController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\PublisherController.java:53: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class PublisherController
+20 errors.
+2026.11.10 00:09:49 INFO  Note: Annotation processing is enabled because one or more processors were found
+2026.11.10 00:09:49 WARN  javac exited with exit code 1
+2026.11.10 00:09:49 INFO  time: compiled gamesUP in 3s
+2026.11.10 00:10:48 INFO  compiling gamesup (38 java sources)
+2026.11.10 00:10:51 WARN  Unexpected javac output: Note: Annotation processing is enabled because one or more processors were found
+  on the class path. A future release of javac may disable annotation processing
+  unless at least one processor is specified by name (-processor), or a search
+  path is specified (--processor-path, --processor-module-path), or annotation
+  processing is enabled explicitly (-proc:only, -proc:full).
+  Use -Xlint:-options to suppress this message.
+  Use -proc:none to disable annotation processing.
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:6: error: package org.springframework.security.config.annotation.web.builders does not exist
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+                                                                  ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:7: error: package org.springframework.security.config.annotation.method.configuration does not exist
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
+                                                                          ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:8: error: package org.springframework.security.config does not exist
+import org.springframework.security.config.Customizer;
+                                          ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:9: error: package org.springframework.security.core.userdetails does not exist
+import org.springframework.security.core.userdetails.User;
+                                                    ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:10: error: package org.springframework.security.provisioning does not exist
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+                                                ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:11: error: package org.springframework.security.web does not exist
+import org.springframework.security.web.SecurityFilterChain;
+                                       ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:14: error: cannot find symbol
+@EnableMethodSecurity
+ ^
+  symbol: class EnableMethodSecurity
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:18: error: cannot find symbol
+    public InMemoryUserDetailsManager users() {
+           ^
+  symbol:   class InMemoryUserDetailsManager
+  location: class SecurityConfig
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:32: error: cannot find symbol
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                                                   ^
+  symbol:   class HttpSecurity
+  location: class SecurityConfig
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\config\SecurityConfig.java:32: error: cannot find symbol
+    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+           ^
+  symbol:   class SecurityFilterChain
+  location: class SecurityConfig
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\AuthorController.java:14: error: package org.springframework.security.access.prepost does not exist
+import org.springframework.security.access.prepost.PreAuthorize;
+                                                  ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\PublisherController.java:14: error: package org.springframework.security.access.prepost does not exist
+import org.springframework.security.access.prepost.PreAuthorize;
+                                                  ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\UserController.java:6: error: package org.springframework.security.core does not exist
+import org.springframework.security.core.Authentication;
+                                        ^
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\UserController.java:35: error: cannot find symbol
+    public User getCurrentUser(Authentication authentication) {
+                               ^
+  symbol:   class Authentication
+  location: class UserController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\AuthorController.java:40: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class AuthorController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\AuthorController.java:47: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class AuthorController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\AuthorController.java:53: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class AuthorController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\PublisherController.java:40: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class PublisherController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\PublisherController.java:47: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class PublisherController
+C:\Users\imaur\Desktop\EDC_Bloc4_ISCOD\gamesUP\src\main\java\com\gamesUP\gamesUP\controller\PublisherController.java:53: error: cannot find symbol
+    @PreAuthorize("hasRole('ADMIN')")
+     ^
+  symbol:   class PreAuthorize
+  location: class PublisherController
+20 errors.
+2026.11.10 00:10:51 INFO  Note: Annotation processing is enabled because one or more processors were found
+2026.11.10 00:10:51 WARN  javac exited with exit code 1
+2026.11.10 00:10:51 INFO  time: compiled gamesUP in 3.03s

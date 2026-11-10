@@ -1,0 +1,25 @@
+@startuml
+title Recommandation d'un utilisateur
+
+actor Client
+participant "GameController" as controller
+participant "GameService" as service
+participant "RecommandationClient" as client
+participant "API FastAPI" as api
+database "GameRepository" as repository
+
+Client -> controller : GET /jeux/recommandations/{idUtilisateur}
+controller -> service : recommander(idUtilisateur)
+service -> client : recommander(idUtilisateur)
+client -> api : GET /recommandations/{idUtilisateur}
+api --> client : liste d'identifiants de jeux
+
+loop pour chaque identifiant
+  service -> repository : findById(idJeu)
+  repository --> service : Game
+end
+
+service --> controller : liste de Game
+controller --> Client : liste de GameDTO
+
+@enduml

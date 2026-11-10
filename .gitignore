@@ -1,0 +1,5 @@
+.metals/
+.metals/metals.log
+*.pkl
+*.joblib
+donnees_test.csv
