@@ -1,5 +1,6 @@
 .metals/
 .metals/metals.log
+**pycache**/
 *.pkl
 *.joblib
 donnees_test.csv

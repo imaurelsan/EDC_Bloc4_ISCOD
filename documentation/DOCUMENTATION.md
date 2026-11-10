@@ -13,6 +13,11 @@ Le projet utilise Spring Boot 3.3.4 et Java 21. Les contrôleurs appellent les
 services. Les services utilisent les repositories JPA. Spring appelle l'API
 Python avec `RecommandationClient`.
 
+La sécurité prévoit un utilisateur `client` avec le rôle `CLIENT` et un
+utilisateur `admin` avec le rôle `ADMIN`. Les deux peuvent consulter les jeux.
+Les modifications sont réservées à l'administrateur, selon
+`gamesUP/src/main/java/com/gamesUP/gamesUP/config/SecurityConfig.java:35`.
+
 ## 2. Diagramme de classes
 
 ```mermaid
@@ -61,6 +66,10 @@ sequenceDiagram
     S->>S: Recherche dans GameRepository
     S-->>C: Liste de GameDTO
 ```
+
+La recherche de jeux est disponible avec
+`GET /jeux/recherche?nom=...`, dans
+`gamesUP/src/main/java/com/gamesUP/gamesUP/controller/GameController.java:27`.
 
 La route Spring est dans
 `gamesUP/src/main/java/com/gamesUP/gamesUP/controller/GameController.java:32`.
@@ -117,6 +126,9 @@ dans un fichier pickle.
 les routes de recommandation renvoient HTTP 503 avec le message
 « Le modèle de recommandation est indisponible. », dans
 `CodeApiPython/main.py:20`.
+
+Le fichier `knn_model.pkl` n'est pas versionné. Il est régénéré avec
+`train_model.py` à partir de données fictives.
 
 Les fichiers concernés sont :
 
